@@ -17,7 +17,11 @@ body {
     margin: 0 auto;
     padding: 0 24px;
 }
-
+html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
 /* ====== Header ====== */
 /* ====== Header обновленный ====== */
 /* ====== Header ====== */
@@ -5771,6 +5775,4 @@ body {
 
     
 }
-* {
-    outline: 1px solid red !important;
-}
+
