@@ -581,8 +581,13 @@ html, body {
         border-radius: 30px;
         
         background: white;
+        transition: height 0.4s ease-in-out; /* Плавное изменение высоты */
+        
     }
-
+#reviewsCarousel {
+    display: flex;
+    align-items: flex-start; /* Важно: чтобы слайды не растягивались по самому высокому */
+}
     .reviews-carousel .carousel-items {
         display: flex;
         transition: transform 0.4s ease-in-out;
@@ -1021,6 +1026,11 @@ html, body {
         color: #fff;
         padding: 6px 12px;
         border-radius: 8px;
+    }
+@media (max-width: 768px) {
+    .campus-title {
+        font-size: 28px !important;
+        margin-bottom: 30px !important;
     }
 
 
