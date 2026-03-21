@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Подключаем внешний CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -34,9 +34,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
             <div class="header-contact">
                 <a href="tel:+79160375054" class="header-phone">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>+7 (916) 037-50-54</span>
-                </a>
+                    <i class="fas fa-phone-alt"></i> <span>+7 (916) 037-50-54</span></a>
                 <a href="https://t.me/CD_RUSSIA" target="_blank" class="header-telegram">
                     <i class="fab fa-telegram"></i>
                 </a>
@@ -599,13 +597,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
                     </div>
                     <div class="info-text">
                         <h2>Питание</h2>
-                        <div class="web-text">
-                            <h4>Разнообразное питание</h4>
-                            <p>Кафе университета с разными заведениями и вкуснейшими блюдами: мясо, овощи, крупы, макароны, морепродукты и свежие фрукты каждый день.</p>
-                            <h4>Принцип "шведского стола"</h4>
-                            <p>Каждый может выбрать понравившееся блюдо — кампусная карта позволяет оплачивать питание в один клик.</p>
-                        </div>
-
                         <ul class="mobile-list">
                             <li><strong>Кафе университета с разными заведениями и вкуснейшими блюдами: </strong>мясо, овощи, крупы, макароны, морепродукты и свежие фрукты каждый день.</li>
                             <li><strong>Принцип "шведского стола":</strong> каждый может выбрать понравившееся блюдо.</li>
@@ -655,28 +646,34 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <section class="accommodation-section">
             <div class="container">
                 <h2 style="margin-top:60px;" class="section-title text-center">Проживание</h2>
-
                 <div class="accommodation-wrapper">
                     <div class="city-block">
                         <h3 class="city-title">Проживание в Пекине</h3>
-                        <div class="photo-grid">
-                            <div class="photo-item"><img src="img/к1.svg" alt="Холл в Пекине"></div>
-                            <div class="photo-item"><img src="img/к2.svg" alt="Здание университета"></div>
-                            <div class="photo-item"><img src="img/к3.svg" alt="Комната"></div>
-                            <div class="photo-item"><img src="img/к4.svg" alt="Общая зона"></div>
+                        <div class="photo-carousel">
+                            <div class="photo-carousel-track" id="pekinAccommodationTrack">
+                                <div class="photo-item"><img src="img/к1.svg" alt="Холл в Пекине"></div>
+                                <div class="photo-item"><img src="img/к2.svg" alt="Здание университета"></div>
+                                <div class="photo-item"><img src="img/к3.svg" alt="Комната"></div>
+                                <div class="photo-item"><img src="img/к4.svg" alt="Общая зона"></div>
+                            </div>
+                            <div class="photo-carousel-dots" id="pekinAccommodationDots"></div>
                         </div>
-                    </div>
+                    </div>  
 
                     <div class="city-block">
-                        <h3 class="city-title">Проживание в Цзинане</h3>
-                        <div class="photo-grid">
-                            <div class="photo-item"><img src="img/к5.svg" alt="Холл в Цзинане"></div>
-                            <div class="photo-item"><img src="img/к6.svg" alt="Вид из окна"></div>
-                            <div class="photo-item"><img src="img/к7.svg" alt="Комната"></div>
-                            <div class="photo-item"><img src="img/к8.svg" alt="Здание"></div>
+                    <h3 class="city-title">Проживание в Цзинане</h3>
+                        <div class="photo-carousel">
+                            <div class="photo-carousel-track" id="jinanAccommodationTrack">
+                                <div class="photo-item"><img src="img/к5.svg" alt="Холл в Цзинане"></div>
+                                <div class="photo-item"><img src="img/к6.svg" alt="Вид из окна"></div>
+                                <div class="photo-item"><img src="img/к7.svg" alt="Комната"></div>
+                                <div class="photo-item"><img src="img/к8.svg" alt="Здание"></div>
+                            </div>
+                            <div class="photo-carousel-dots" id="jinanAccommodationDots"></div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="accommodation-info">
                     <ul class="accommodation-list">
                         <li>

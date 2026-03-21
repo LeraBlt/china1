@@ -123,9 +123,7 @@ html, body {
     /* Контакты в шапке на мобильных */
     
 
-    .header-phone span {
-        display: none;
-    }
+    
 
     .header-phone {
         padding: 8px 12px;
@@ -4848,9 +4846,7 @@ html, body {
         margin-right: 15px;
     }
 
-    .header-phone span {
-        display: none;
-    }
+    
     /* Прячем текст телефона, оставляем иконку */
     .header-phone {
         padding: 10px;
@@ -5207,6 +5203,7 @@ html, body {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px;
     }
+    
 
     /* 7. Ценообразование и скидка */
     .campus-split-column {
@@ -5652,7 +5649,38 @@ html, body {
         grid-template-columns: 1fr !important;
         gap: 20px;
     }
+    /* 1. Находим конкретно строки в секции программы */
+    .program-section .program-row {
+        display: flex !important;
+        flex-direction: column !important; /* Строго по 1 в ряд */
+        gap: 15px !important;
+        margin-bottom: 15px !important;
+    }
 
+    /* 2. Настраиваем саму карточку только для этой секции */
+    .program-section .program-card-wide {
+        width: 100% !important;
+        /* Уменьшаем высоту для мобилки, чтобы не было "шпал" по 380px */
+        height: 220px !important; 
+        border-radius: 16px !important; /* Можно чуть скруглить меньше для мобилки */
+    }
+
+    /* 3. Обязательно подправляем картинку, чтобы она не сплющилась */
+    .program-section .program-card-wide img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    /* 4. Если текст внутри карточки (overlay) слишком большой */
+    .program-section .card-overlay-wide {
+        padding: 15px !important;
+    }
+    
+    .program-section .card-overlay-wide h3 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+    }
     /* Скрываем лишние фото, которые перегружают мобильную версию */
     .details-photos, .photo-grid-quad, .collab-image-mini, .about-gallery {
         display: none !important;
@@ -5733,32 +5761,30 @@ html, body {
     .footer-description {
         margin: 0 !important;
     }
-    .fa-phone-alt:before, .fa-phone-flip:before {
-        display:none;
-    }
+    
+    
+    
 }
 .footer-mobile-socials {
     display: none; /* Прячем мобильные кнопки на компьютере */
 }
 
 /* Убираем стандартные маркеры и отступы у всех списков в вебе */
-.mobile-list, .info-list, .accommodation-list {
-    list-style: none;
+.info-list, .accommodation-list {
+    
     padding: 0;
     margin: 0;
 }
 
     /* Настраиваем шрифт для веба */
-    .info-text p, .info-list li, .accommodation-list li {
+    .info-text p, .info-list li, .mobile-list,  .accommodation-list li {
         font-size: 18px;
         line-height: 1.6;
        
     }
 
 /* Скрываем мобильный список питания в вебе */
-.mobile-list {
-    display: none;
-}
+
 
 /* Центрируем заголовок Проживание в вебе */
 .section-title.text-center {
@@ -5766,6 +5792,7 @@ html, body {
 }
 
 @media (max-width: 450px) {
+    
     /* 1. Контейнер, где лежат фото */
     .hero-photos {
         display: flex !important;
@@ -5788,3 +5815,88 @@ html, body {
     
 }
 
+/* ====== Карусель для проживания ====== */
+.photo-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.photo-carousel-track {
+    
+    gap: 12px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* На десктопе - обычная сетка без скролла */
+.photo-carousel-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    overflow: visible;
+    scroll-snap-type: none;
+}
+
+.photo-carousel-track .photo-item {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.photo-carousel-track .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Точки-индикаторы - по умолчанию скрыты */
+.photo-carousel-dots {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 8px 0;
+}
+
+.photo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+    border: 1px solid #b59d5c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-dot.active {
+    background-color: #b59d5c;
+    transform: scale(1.2);
+}
+
+/* ====== МОБИЛЬНАЯ ВЕРСИЯ ====== */
+@media (max-width: 768px) {
+    .photo-carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        scrollbar-width: none; /* Скрываем скроллбар */
+    }
+    
+    .photo-carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .photo-carousel-track .photo-item {
+        flex: 0 0 calc(100% - 20px);
+        scroll-snap-align: start;
+    }
+    
+    /* Показываем точки на мобильных */
+    .photo-carousel-dots {
+        display: flex;
+    }
+}

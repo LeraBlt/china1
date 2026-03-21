@@ -202,6 +202,56 @@ document.addEventListener('DOMContentLoaded', () => {
         // Запуск первого слайда
         goToReviewSlide(0);
     }
+    // ===== Карусель для проживания (с точками) =====
+function initPhotoCarousel(trackId, dotsId) {
+    const track = document.getElementById(trackId);
+    const dotsContainer = document.getElementById(dotsId);
+    
+    if (!track || !dotsContainer) return;
+    
+    const items = track.querySelectorAll('.photo-item');
+    const itemCount = items.length;
+    
+    if (itemCount <= 1) return;
+    
+    // Создаем точки
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < itemCount; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('photo-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            track.scrollTo({
+                left: items[i].offsetLeft,
+                behavior: 'smooth'
+            });
+        });
+        dotsContainer.appendChild(dot);
+    }
+    
+    const dots = document.querySelectorAll(`#${dotsId} .photo-dot`);
+    
+    // Обновляем активную точку при скролле
+    track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        let activeIndex = 0;
+        
+        for (let i = 0; i < items.length; i++) {
+            const itemLeft = items[i].offsetLeft;
+            if (scrollLeft >= itemLeft - 50) {
+                activeIndex = i;
+            }
+        }
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIndex);
+        });
+    });
+}
+
+// Инициализируем карусели проживания
+initPhotoCarousel('pekinAccommodationTrack', 'pekinAccommodationDots');
+initPhotoCarousel('jinanAccommodationTrack', 'jinanAccommodationDots');
 
     // ===== Сворачиваемое расписание =====
     const showMoreBtn = document.getElementById('showMoreBtn');
