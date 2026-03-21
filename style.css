@@ -1027,11 +1027,7 @@ html, body {
         padding: 6px 12px;
         border-radius: 8px;
     }
-@media (max-width: 768px) {
-    .campus-title {
-        font-size: 28px !important;
-        margin-bottom: 30px !important;
-    }
+
 
 
 /* карточки */
