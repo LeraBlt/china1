@@ -5574,11 +5574,17 @@ html, body {
     .info-block.reverse {
         flex-direction: column !important;
     }
+
+    .campus-title {
+        font-size: 28px !important;
+        margin-bottom: 30px !important;
+    }
     /* 13. Расписание и FAQ */
     .schedule-table {
         min-width: 100%;
         font-size: 12px;
     }
+
 
     .schedule-wrapper {
         overflow-x: scroll;
