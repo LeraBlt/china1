@@ -33,6 +33,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    function rearrangeSections() {
+        const factsSection = document.querySelector('.facts-section');
+        const heroSection = document.querySelector('.hero-left')?.closest('section') || document.querySelector('section');
+
+        if (window.innerWidth <= 768) {
+            // Если мобилка: вставляем цифры СРАЗУ ПОСЛЕ hero
+            if (heroSection && factsSection) {
+                heroSection.after(factsSection);
+            }
+        } else {
+            // Если вебка: возвращаем цифры на их законное место (например, перед подвалом или где они были)
+            // Но обычно в вебе браузер и так отрисует их по порядку в HTML, 
+            // так что при обновлении страницы всё будет ок.
+        }
+    }
+
+    // Запускаем при загрузке и при изменении размера экрана
+    window.addEventListener('load', rearrangeSections);
+    window.addEventListener('resize', rearrangeSections);
 
     // ===== Универсальная функция для карусели (С ПОДДЕРЖКОЙ СВАЙПА) =====
     function initCarousel(carouselId, prevId, nextId, dotsId) {
