@@ -4190,7 +4190,7 @@ html, body {
 .carousel-track {
     display: flex;
     gap: 20px;
-    animation: scroll 10s linear infinite;
+    animation: scroll 30s linear infinite;
     width: fit-content;
 }
 
@@ -4599,8 +4599,8 @@ html, body {
 }
 
     .footer-qr-wrapper img {
-        width: 100px;
-        height: 100px;
+        width: 40%;
+        height: 40%;
         margin-bottom: 15px;
         border-radius: 8px;
     }
