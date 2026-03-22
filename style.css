@@ -1433,7 +1433,7 @@ html, body {
 /* ====== Секция "Почему этот лагерь особенный?" ====== */
 .about-section {
     position: relative;
-    background-image: url('img/Group 1.svg');
+    background-image: url('img/Group 1.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -2251,7 +2251,7 @@ html, body {
 /* ====== BFSU Section ====== */
 .bfsu-section {
     position: relative;
-    background-image: url('img/img11.svg');
+    background-image: url('img/img11.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -2289,7 +2289,7 @@ html, body {
 /* ====== JGC Section ====== */
 .jgc-section {
     position: relative;
-    background-image: url('img/58.svg');
+    background-image: url('img/58.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -4190,7 +4190,7 @@ html, body {
 .carousel-track {
     display: flex;
     gap: 20px;
-    animation: scroll 40s linear infinite;
+    animation: scroll 10s linear infinite;
     width: fit-content;
 }
 
