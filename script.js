@@ -1,60 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Мобильное меню =====
+
+    // ===== 1. МОБИЛЬНОЕ МЕНЮ =====
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    if (menuToggle) {
+    if (menuToggle && navLinks) {
         const menuIcon = menuToggle.querySelector('i');
 
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             navLinks.classList.toggle('active');
             if (navLinks.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
+                menuIcon.classList.replace('fa-bars', 'fa-times');
             } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
             }
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
             });
         });
 
         document.addEventListener('click', (e) => {
             if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
             }
         });
     }
 
+    // ===== 2. ПЕРЕСТРОЙКА СЕКЦИЙ (Mobile First) =====
     function rearrangeSections() {
         const factsSection = document.querySelector('.facts-section');
         const heroSection = document.querySelector('.hero-left')?.closest('section') || document.querySelector('section');
 
-        if (window.innerWidth <= 768) {
-            // Если мобилка: вставляем цифры СРАЗУ ПОСЛЕ hero
-            if (heroSection && factsSection) {
-                heroSection.after(factsSection);
-            }
-        } else {
-            // Если вебка: возвращаем цифры на их законное место (например, перед подвалом или где они были)
-            // Но обычно в вебе браузер и так отрисует их по порядку в HTML, 
-            // так что при обновлении страницы всё будет ок.
+        if (window.innerWidth <= 768 && heroSection && factsSection) {
+            heroSection.after(factsSection);
         }
     }
-
-    // Запускаем при загрузке и при изменении размера экрана
     window.addEventListener('load', rearrangeSections);
     window.addEventListener('resize', rearrangeSections);
 
-    // ===== Универсальная функция для карусели (С ПОДДЕРЖКОЙ СВАЙПА) =====
+    // ===== 3. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ (Свайпы + Видео) =====
     function initCarousel(carouselId, prevId, nextId, dotsId) {
         const carousel = document.getElementById(carouselId);
         const prevBtn = document.getElementById(prevId);
@@ -64,215 +53,145 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
 
         const slides = carousel.querySelectorAll('.carousel-slide');
-        if (slides.length === 0) return;
-
         let currentIndex = 0;
         let touchStartX = 0;
         let touchEndX = 0;
 
+        // Создание точек
         dotsContainer.innerHTML = '';
-        for (let i = 0; i < slides.length; i++) {
+        slides.forEach((_, i) => {
             const dot = document.createElement('div');
             dot.classList.add('carousel-dot');
             if (i === 0) dot.classList.add('active');
             dot.addEventListener('click', () => goToSlide(i));
             dotsContainer.appendChild(dot);
-        }
+        });
 
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
 
         function goToSlide(index) {
             if (index < 0) index = slides.length - 1;
             if (index >= slides.length) index = 0;
-
             currentIndex = index;
             carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-            });
-
-            carousel.querySelectorAll('video').forEach(video => video.pause());
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+            carousel.querySelectorAll('video').forEach(v => v.pause());
         }
 
-        // --- ЛОГИКА СВАЙПА ---
-        carousel.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
+        carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         carousel.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            const dist = touchStartX - touchEndX;
+            if (Math.abs(dist) > 50) goToSlide(dist > 0 ? currentIndex + 1 : currentIndex - 1);
         }, { passive: true });
-
-        function handleSwipe() {
-            const swipeDistance = touchStartX - touchEndX;
-            const threshold = 50; // Минимальное расстояние для срабатывания свайпа
-
-            if (swipeDistance > threshold) {
-                goToSlide(currentIndex + 1); // Свайп влево -> следующий
-            } else if (swipeDistance < -threshold) {
-                goToSlide(currentIndex - 1); // Свайп вправо -> предыдущий
-            }
-        }
 
         prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
         nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-        goToSlide(0);
     }
 
-    // Инициализация основных каруселей
     initCarousel('mediaCarousel', 'prevMedia', 'nextMedia', 'mediaDots');
     initCarousel('jinanCarousel', 'prevJinan', 'nextJinan', 'jinanDots');
     initCarousel('pekinExcCarousel', 'prevPekinExc', 'nextPekinExc', 'pekinExcDots');
     initCarousel('jinanExcCarousel', 'prevJinanExc', 'nextJinanExc', 'jinanExcDots');
     initCarousel('memoriesCarousel', 'prevMemories', 'nextMemories', 'memoriesDots');
 
-    // ===== Слайдер отзывов (С АВТО-ВЫСОТОЙ И СВАЙПОМ) =====
+    // ===== 4. СЛАЙДЕР ОТЗЫВОВ (С авто-высотой) =====
     const reviewsCarousel = document.getElementById('reviewsCarousel');
-    const prevReviews = document.getElementById('prevReviews');
-    const nextReviews = document.getElementById('nextReviews');
     const reviewsDots = document.getElementById('reviewsDots');
 
-    if (reviewsCarousel && prevReviews && nextReviews && reviewsDots) {
-        const reviewsWrapper = reviewsCarousel.parentElement; // Обертка для высоты
-        const reviewSlides = document.querySelectorAll('#reviewsCarousel .carousel-slide');
-        let currentReviewIndex = 0;
-        let rTouchStartX = 0;
-        let rTouchEndX = 0;
+    if (reviewsCarousel && reviewsDots) {
+        const reviewsWrapper = reviewsCarousel.parentElement;
+        const reviewSlides = reviewsCarousel.querySelectorAll('.carousel-slide');
+        let rIdx = 0;
 
-        // Генерируем точки
+        function adjustHeight(index) {
+            const slide = reviewSlides[index];
+            if (slide) reviewsWrapper.style.height = slide.offsetHeight + 'px';
+        }
+
+        function goToReview(index) {
+            if (index < 0) index = reviewSlides.length - 1;
+            if (index >= reviewSlides.length) index = 0;
+            rIdx = index;
+            reviewsCarousel.style.transform = `translateX(-${rIdx * 100}%)`;
+            document.querySelectorAll('#reviewsDots .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === rIdx));
+            adjustHeight(rIdx);
+        }
+
         reviewsDots.innerHTML = '';
         reviewSlides.forEach((_, i) => {
             const dot = document.createElement('div');
             dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToReviewSlide(i));
+            dot.addEventListener('click', () => goToReview(i));
             reviewsDots.appendChild(dot);
         });
 
-        const reviewDotsList = document.querySelectorAll('#reviewsDots .carousel-dot');
-
-        // ФУНКЦИЯ ПОДСТРОЙКИ ВЫСОТЫ
-        function adjustWrapperHeight(index) {
-            const currentSlide = reviewSlides[index];
-            if (currentSlide) {
-                const newHeight = currentSlide.offsetHeight;
-                reviewsWrapper.style.height = newHeight + 'px';
-            }
-        }
-
-        function goToReviewSlide(index) {
-            if (index < 0) index = reviewSlides.length - 1;
-            if (index >= reviewSlides.length) index = 0;
-
-            currentReviewIndex = index;
-
-            // Сдвигаем слайд
-            reviewsCarousel.style.transform = `translateX(-${currentReviewIndex * 100}%)`;
-
-            // Обновляем точки
-            reviewDotsList.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentReviewIndex);
-            });
-
-            // ВАЖНО: Подстраиваем высоту под новый слайд
-            adjustWrapperHeight(currentReviewIndex);
-        }
-
-        // Свайпы
-        reviewsCarousel.addEventListener('touchstart', e => {
-            rTouchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        reviewsCarousel.addEventListener('touchend', e => {
-            rTouchEndX = e.changedTouches[0].screenX;
-            const dist = rTouchStartX - rTouchEndX;
-            if (dist > 50) goToReviewSlide(currentReviewIndex + 1);
-            if (dist < -50) goToReviewSlide(currentReviewIndex - 1);
-        }, { passive: true });
-
-        prevReviews.addEventListener('click', () => goToReviewSlide(currentReviewIndex - 1));
-        nextReviews.addEventListener('click', () => goToReviewSlide(currentReviewIndex + 1));
-
-        // Инициализация первой высоты при загрузке и ресайзе
-        window.addEventListener('load', () => adjustWrapperHeight(0));
-        window.addEventListener('resize', () => adjustWrapperHeight(currentReviewIndex));
-
-        // Запуск первого слайда
-        goToReviewSlide(0);
-    }
-    // ===== Карусель для проживания (с точками) =====
-function initPhotoCarousel(trackId, dotsId) {
-    const track = document.getElementById(trackId);
-    const dotsContainer = document.getElementById(dotsId);
-    
-    if (!track || !dotsContainer) return;
-    
-    const items = track.querySelectorAll('.photo-item');
-    const itemCount = items.length;
-    
-    if (itemCount <= 1) return;
-    
-    // Создаем точки
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < itemCount; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('photo-dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-            track.scrollTo({
-                left: items[i].offsetLeft,
-                behavior: 'smooth'
-            });
-        });
-        dotsContainer.appendChild(dot);
-    }
-    
-    const dots = document.querySelectorAll(`#${dotsId} .photo-dot`);
-    
-    // Обновляем активную точку при скролле
-    track.addEventListener('scroll', () => {
-        const scrollLeft = track.scrollLeft;
-        let activeIndex = 0;
+        document.getElementById('prevReviews')?.addEventListener('click', () => goToReview(rIdx - 1));
+        document.getElementById('nextReviews')?.addEventListener('click', () => goToReview(rIdx + 1));
         
-        for (let i = 0; i < items.length; i++) {
-            const itemLeft = items[i].offsetLeft;
-            if (scrollLeft >= itemLeft - 50) {
-                activeIndex = i;
-            }
-        }
-        
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === activeIndex);
+        window.addEventListener('resize', () => adjustHeight(rIdx));
+        setTimeout(() => goToReview(0), 500); // Небольшая задержка для корректного замера высоты
+    }
+
+    // ===== 5. КАРУСЕЛИ ПРОЖИВАНИЯ (Scroll-based dots) =====
+    function initPhotoCarousel(trackId, dotsId) {
+        const track = document.getElementById(trackId);
+        const dotsContainer = document.getElementById(dotsId);
+        if (!track || !dotsContainer) return;
+
+        const items = track.querySelectorAll('.photo-item');
+        dotsContainer.innerHTML = '';
+        items.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('photo-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                track.scrollTo({ left: items[i].offsetLeft, behavior: 'smooth' });
+            });
+            dotsContainer.appendChild(dot);
         });
+
+        const dots = dotsContainer.querySelectorAll('.photo-dot');
+        track.addEventListener('scroll', () => {
+            let activeIdx = 0;
+            items.forEach((item, i) => {
+                if (track.scrollLeft >= item.offsetLeft - 50) activeIdx = i;
+            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIdx));
+        }, { passive: true });
+    }
+
+    initPhotoCarousel('pekinAccommodationTrack', 'pekinAccommodationDots');
+    initPhotoCarousel('jinanAccommodationTrack', 'jinanAccommodationDots');
+
+    // ===== 6. ПОСТЕПЕННАЯ ПРОГРУЗКА СЕКЦИЙ (Lazy Appear) =====
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+                sectionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.section').forEach(sec => {
+        if (sec.getBoundingClientRect().top < window.innerHeight) {
+            sec.classList.add('appear');
+        } else {
+            sectionObserver.observe(sec);
+        }
     });
-}
 
-// Инициализируем карусели проживания
-initPhotoCarousel('pekinAccommodationTrack', 'pekinAccommodationDots');
-initPhotoCarousel('jinanAccommodationTrack', 'jinanAccommodationDots');
-
-    // ===== Сворачиваемое расписание =====
+    // ===== 7. СВОРАЧИВАЕМОЕ РАСПИСАНИЕ =====
     const showMoreBtn = document.getElementById('showMoreBtn');
     if (showMoreBtn) {
-        const moreDays = document.getElementById('more-days');
-        const btnText = document.getElementById('btnText');
-        const btnIcon = document.getElementById('btnIcon');
         let isExpanded = false;
-
-        showMoreBtn.addEventListener('click', function () {
-            if (!isExpanded) {
-                moreDays.style.display = 'table-row-group';
-                btnText.textContent = 'Скрыть';
-                btnIcon.className = 'fas fa-chevron-up';
-                isExpanded = true;
-            } else {
-                moreDays.style.display = 'none';
-                btnText.textContent = 'Показать ещё';
-                btnIcon.className = 'fas fa-chevron-down';
-                isExpanded = false;
-            }
+        showMoreBtn.addEventListener('click', () => {
+            const moreDays = document.getElementById('more-days');
+            isExpanded = !isExpanded;
+            moreDays.style.display = isExpanded ? 'table-row-group' : 'none';
+            document.getElementById('btnText').textContent = isExpanded ? 'Скрыть' : 'Показать ещё';
+            document.getElementById('btnIcon').className = isExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
         });
     }
 });
