@@ -4315,9 +4315,7 @@ html, body {
     transition: transform 0.5s ease;
 }
 
-.project-item:hover .project-bg {
-    transform: scale(1.05); /* Эффект приближения при наведении */
-}
+
 
 /* Темный градиент для читаемости текста (как на фото) */
 .project-overlay {
