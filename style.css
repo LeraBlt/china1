@@ -5927,4 +5927,3 @@ html, body {
 .section {
     will-change: transform, opacity;
     /* Это подготавливает браузер к анимации заранее */
-}
