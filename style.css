@@ -4190,7 +4190,7 @@ html, body {
 .carousel-container {
     width: 100%;
     overflow: hidden;
-    margin: 40px 0;
+    margin: 0px 0;
     position: relative;
 }
 
@@ -5919,8 +5919,7 @@ html, body {
     transform: translateY(0);
 }
 .section {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 500px; /* Примерная высота секции, чтобы скролл не прыгал */
+    content-visibility: auto; /* Примерная высота секции, чтобы скролл не прыгал */
 }
 .section {
     will-change: transform, opacity;
