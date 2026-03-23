@@ -31,18 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== 2. ПЕРЕСТРОЙКА СЕКЦИЙ (Mobile First) =====
-    function rearrangeSections() {
-        const factsSection = document.querySelector('.facts-section');
-        const heroSection = document.querySelector('.hero-left')?.closest('section') || document.querySelector('section');
-
-        if (window.innerWidth <= 768 && heroSection && factsSection) {
-            heroSection.after(factsSection);
-        }
-    }
-    window.addEventListener('load', rearrangeSections);
-    window.addEventListener('resize', rearrangeSections);
-
+    
     // ===== 3. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ (Свайпы + Видео) =====
     function initCarousel(carouselId, prevId, nextId, dotsId) {
         const carousel = document.getElementById(carouselId);

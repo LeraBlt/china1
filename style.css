@@ -2033,6 +2033,9 @@ html, body {
 
 
 .facts-section {
+    display:none;
+}
+.facts-section-disp {
     background-color: #fcfcfc;
 }
 
@@ -2497,10 +2500,8 @@ html, body {
     background: #b59d5c !important;
 }
 /* ====== Наши воспоминания ====== */
-.memories-section {
+
     
-    
-}
 
     .memories-section .section-subtitle {
         color: #64748b;
@@ -5928,4 +5929,25 @@ html, body {
     will-change: transform, opacity;
     /* Это подготавливает браузер к анимации заранее */
 }
+ 
+/* ====== НАСТРОЙКА ВИДИМОСТИ СЕКЦИЙ ====== */
 
+/* 1. По умолчанию (для компьютеров/веб) */
+.facts-section {
+    display: none; /* Скрываем мобильную версию на больших экранах */
+}
+
+.facts-section-disp {
+    display: block; /* Показываем веб-версию */
+}
+
+/* 2. Для мобильных устройств (экраны меньше 768px) */
+@media (max-width: 768px) {
+    .facts-section {
+        display: block; /* Показываем мобильную версию */
+    }
+
+    .facts-section-disp {
+        display: none; /* Скрываем веб-версию */
+    }
+}
