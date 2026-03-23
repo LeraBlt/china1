@@ -1437,7 +1437,7 @@ html, body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed; /* Уберите это, если на мобильных не работает */
+    /* Уберите это, если на мобильных не работает */
     padding: 20px 0;
     min-height: 600px; /* Минимальная высота для видимости контента */
     width: 100%;
@@ -2262,7 +2262,7 @@ html, body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
+    
     padding: 40px 0;
 
 }
@@ -2300,7 +2300,7 @@ html, body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
+    
     padding: 40px 0;
 }
 
