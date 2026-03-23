@@ -5720,6 +5720,9 @@ html, body {
     .footer-col {
         align-items: flex-start !important;
     }
+    .footer-col.qr-col {
+        display: none;
+    }
 
     /* 3. Контейнер для кнопок (друг под другом) */
     /* Контейнер для кнопок */
