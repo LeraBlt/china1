@@ -31,7 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+    // ===== 2. ПЕРЕСТРОЙКА СЕКЦИЙ (Mobile First) =====
+    function rearrangeSections() {
+        const factsSection = document.querySelector('.facts-section');
+        const heroSection = document.querySelector('.hero-left')?.closest('section') || document.querySelector('section');
+
+        if (window.innerWidth <= 768 && heroSection && factsSection) {
+            heroSection.after(factsSection);
+        }
+    }
+    window.addEventListener('load', rearrangeSections);
+    window.addEventListener('resize', rearrangeSections);
+
     // ===== 3. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ (Свайпы + Видео) =====
     function initCarousel(carouselId, prevId, nextId, dotsId) {
         const carousel = document.getElementById(carouselId);
@@ -84,43 +95,60 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel('jinanExcCarousel', 'prevJinanExc', 'nextJinanExc', 'jinanExcDots');
     initCarousel('memoriesCarousel', 'prevMemories', 'nextMemories', 'memoriesDots');
 
-    // ===== 4. СЛАЙДЕР ОТЗЫВОВ (С авто-высотой) =====
-    const reviewsCarousel = document.getElementById('reviewsCarousel');
-    const reviewsDots = document.getElementById('reviewsDots');
 
-    if (reviewsCarousel && reviewsDots) {
-        const reviewsWrapper = reviewsCarousel.parentElement;
-        const reviewSlides = reviewsCarousel.querySelectorAll('.carousel-slide');
-        let rIdx = 0;
+// ===== 4. СЛАЙДЕР ОТЗЫВОВ (С авто-высотой + Свайпы) =====
+    const reviewsCarousel = document.getElementById('reviewsCarousel');
+    const reviewsDots = document.getElementById('reviewsDots');
 
-        function adjustHeight(index) {
-            const slide = reviewSlides[index];
-            if (slide) reviewsWrapper.style.height = slide.offsetHeight + 'px';
-        }
+    if (reviewsCarousel && reviewsDots) {
+        const reviewsWrapper = reviewsCarousel.parentElement;
+        const reviewSlides = reviewsCarousel.querySelectorAll('.carousel-slide');
+        let rIdx = 0;
+        let rTouchStart = 0;
+        let rTouchEnd = 0;
 
-        function goToReview(index) {
-            if (index < 0) index = reviewSlides.length - 1;
-            if (index >= reviewSlides.length) index = 0;
-            rIdx = index;
-            reviewsCarousel.style.transform = `translateX(-${rIdx * 100}%)`;
-            document.querySelectorAll('#reviewsDots .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === rIdx));
-            adjustHeight(rIdx);
-        }
+        function adjustHeight(index) {
+            const slide = reviewSlides[index];
+            if (slide) reviewsWrapper.style.height = slide.offsetHeight + 'px';
+        }
 
-        reviewsDots.innerHTML = '';
-        reviewSlides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.classList.add('carousel-dot');
-            dot.addEventListener('click', () => goToReview(i));
-            reviewsDots.appendChild(dot);
-        });
+        function goToReview(index) {
+            if (index < 0) index = reviewSlides.length - 1;
+            if (index >= reviewSlides.length) index = 0;
+            rIdx = index;
+            reviewsCarousel.style.transform = `translateX(-${rIdx * 100}%)`;
+            document.querySelectorAll('#reviewsDots .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === rIdx));
+            adjustHeight(rIdx);
+        }
 
-        document.getElementById('prevReviews')?.addEventListener('click', () => goToReview(rIdx - 1));
-        document.getElementById('nextReviews')?.addEventListener('click', () => goToReview(rIdx + 1));
-        
-        window.addEventListener('resize', () => adjustHeight(rIdx));
-        setTimeout(() => goToReview(0), 500); // Небольшая задержка для корректного замера высоты
-    }
+        // Добавляем поддержку свайпов
+        reviewsCarousel.addEventListener('touchstart', e => { 
+            rTouchStart = e.changedTouches[0].screenX; 
+        }, { passive: true });
+
+        reviewsCarousel.addEventListener('touchend', e => {
+            rTouchEnd = e.changedTouches[0].screenX;
+            const dist = rTouchStart - rTouchEnd;
+            if (Math.abs(dist) > 50) { // порог свайпа 50 пикселей
+                goToReview(dist > 0 ? rIdx + 1 : rIdx - 1);
+            }
+        }, { passive: true });
+
+        // Создание точек и кнопки (остается без изменений)
+        reviewsDots.innerHTML = '';
+        reviewSlides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            dot.addEventListener('click', () => goToReview(i));
+            reviewsDots.appendChild(dot);
+        });
+
+        document.getElementById('prevReviews')?.addEventListener('click', () => goToReview(rIdx - 1));
+        document.getElementById('nextReviews')?.addEventListener('click', () => goToReview(rIdx + 1));
+    
+        window.addEventListener('resize', () => adjustHeight(rIdx));
+        setTimeout(() => goToReview(0), 500);
+    }
 
     // ===== 5. КАРУСЕЛИ ПРОЖИВАНИЯ (Scroll-based dots) =====
     function initPhotoCarousel(trackId, dotsId) {
