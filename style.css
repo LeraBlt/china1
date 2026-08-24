@@ -3649,7 +3649,7 @@ html, body {
 .contact-wrapper {
     display: grid;
     /* фиксируем ширину блоков */
-    grid-template-columns: 420px 480px;
+    grid-template-columns: 300px 350px 300px;
     /* маленькое расстояние */
     gap: 25px;
     justify-content: center;
@@ -4048,7 +4048,7 @@ html, body {
     display: flex;
     gap: 10px;
     margin-top: 10px;
-    flex-wrap: wrap; /* Чтобы на очень узких экранах кнопки переносились */
+     /* Чтобы на очень узких экранах кнопки переносились */
 }
 
     /* Сами кнопки */
