@@ -4528,27 +4528,51 @@ html, body {
 /* Социальные иконки */
 .footer-social-links {
     display: flex;
-    gap: 15px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .social-icon {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(181, 157, 92, 0.3);
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: #b59d5c;
+    background-color: rgba(181, 157, 92, 0.12);
+    border: 1px solid rgba(181, 157, 92, 0.35);
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 18px;
+    transition: all 0.25s ease;
 }
 
-    .social-icon:hover {
-        background-color: #b59d5c;
-        border-color: #b59d5c;
-        transform: translateY(-3px);
-    }
+.social-icon:hover {
+    background-color: #b59d5c;
+    border-color: #b59d5c;
+    color: #1a2144;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(181, 157, 92, 0.35);
+}
+
+/* фирменные цвета при наведении, опционально */
+.social-icon.whatsapp:hover {
+    background-color: #25D366;
+    border-color: #25D366;
+    color: #fff;
+}
+
+.social-icon.telegram:hover {
+    background-color: #229ED9;
+    border-color: #229ED9;
+    color: #fff;
+}
+
+.social-icon.vk:hover {
+    background-color: #0077FF;
+    border-color: #0077FF;
+    color: #fff;
+}
 
 /* Меню */
 .footer-menu {
