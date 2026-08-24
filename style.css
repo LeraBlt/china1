@@ -191,7 +191,29 @@ html, body {
         background: #0077b3;
         transform: scale(1.1);
     }
+.header-max {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 0%;
+    background: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
 
+    .header-max img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+
+    .header-max:hover {
+        background: #f0f0f0;
+        transform: scale(1.1);
+    }
 /* Мобильное меню */
 .menu-toggle {
     display: none;
@@ -4553,6 +4575,26 @@ html, body {
     color: #1a2144;
     transform: translateY(-4px);
     box-shadow: 0 6px 14px rgba(181, 157, 92, 0.35);
+}
+.max-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    transition: filter 0.25s ease;
+}
+
+/* иконка золотая по умолчанию, как остальные */
+.social-icon.max .max-icon-img {
+    filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(360deg) brightness(90%);
+}
+
+.social-icon.max:hover .max-icon-img {
+    filter: brightness(0) invert(1); /* белая иконка на цветном фоне при ховере */
+}
+
+.social-icon.max:hover {
+    background-color: #0077FF; /* фирменный синий MAX — поправьте под актуальный брендбук */
+    border-color: #0077FF;
 }
 
 /* фирменные цвета при наведении, опционально */
