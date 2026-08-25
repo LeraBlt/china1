@@ -5830,9 +5830,7 @@ html, body {
     .footer-logo img {
         margin: 0 0 15px 0 !important;
     }
-    .footer-social-links{
-        display:none;
-    }
+    
     .footer-description {
         margin: 0 !important;
     }
