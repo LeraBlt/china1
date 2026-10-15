@@ -3567,3 +3567,20 @@ main > section .section-title {
     height: auto !important;
   }
 }
+
+/* Keep the moving photo strip at the same pace when Safari renders fewer frames. */
+.time-driven-section {
+  content-visibility: visible;
+  will-change: auto;
+}
+
+.carousel-track.time-driven {
+  animation: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .time-driven-section .carousel-track {
+    animation: none;
+  }
+}
