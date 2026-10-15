@@ -2251,20 +2251,16 @@ body {
 .carousel-track {
     display: flex;
     gap: 20px;
-    animation: scroll 22s linear infinite;
+    animation: scroll 30s linear infinite;
     width: fit-content;
 }
 
 @keyframes scroll {
     0% { transform: translateX(0); }
+    45% { transform: translateX(calc(-50% - 10px)); }
     50% { transform: translateX(calc(-50% - 10px)); }
+    95% { transform: translateX(0); }
     100% { transform: translateX(0); }
-}
-
-@media (max-width: 768px) {
-    .carousel-track {
-        animation-duration: 18s;
-    }
 }
 
 .carousel-item {
@@ -3560,8 +3556,19 @@ main > section .section-title {
   }
 }
 
+/* Keep the moving photo strip at the same pace when Safari renders fewer frames. */
+.time-driven-section {
+  content-visibility: visible;
+  will-change: auto;
+}
+
+.carousel-track.time-driven {
+  animation: none;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .carousel-track {
+  .time-driven-section .carousel-track {
     animation: none;
   }
 }
