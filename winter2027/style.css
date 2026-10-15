@@ -1909,6 +1909,10 @@ body {
     cursor: pointer;
 }
 
+.faq-item:last-child {
+    border-bottom: none;
+}
+
 .faq-question {
     list-style: none;
     display: flex;
@@ -1961,7 +1965,7 @@ body {
 .footer {
     background-color: #1a2a4f;
     color: #ffffff;
-    padding: 80px 0 30px;
+    padding: 60px 0 30px;
     font-size: 15px;
 }
 
@@ -3254,9 +3258,7 @@ body {
     transform: translateY(0);
 }
 
-.section {
-    content-visibility: auto;
-}
+
 
 
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
