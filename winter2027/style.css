@@ -2544,7 +2544,7 @@ body {
         width: 100% !important;
     }
     .hero-left h1 {
-        font-size: 38px !important;
+        font-size: 42px !important;
         line-height: 1.1 !important;
     }
     .hero-text,
@@ -3292,15 +3292,7 @@ body {
   background: currentColor;
 }
 
-.hero-left h1 {
-  max-width: 650px;
-  margin: 0 0 24px;
-  color: var(--ink);
-  font-size: clamp(56px, 5.4vw, 70px);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.068em;
-}
+
 
 .hero-left h1 span {
   display: block;
@@ -3368,11 +3360,7 @@ body {
     font-size: 10px;
   }
 
-  .hero-left h1 {
-    margin-bottom: 20px;
-    font-size: clamp(49px, 10vw, 72px);
-    line-height: 1.07;
-  }
+  
 
   .hero-text,
   .hero-university {
@@ -3582,5 +3570,102 @@ main > section .section-title {
 @media (prefers-reduced-motion: reduce) {
   .time-driven-section .carousel-track {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 14px 0 32px;
+  }
+
+  .hero .hero-left {
+    align-items: stretch !important;
+    padding: 18px 0 8px;
+    text-align: left !important;
+  }
+
+  .hero-left .hero-date {
+    position: relative;
+    align-self: flex-start;
+    margin: 0 0 18px;
+    padding: 0;
+    font-size: clamp(13px, 3.2vw, 16px);
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-align: left;
+  }
+
+  .hero-left .hero-date::before {
+    content: none;
+  }
+
+  .hero-left h1 {
+    width: 100%;
+    margin: 0 0 22px;
+    font-size: clamp(36px, 7.2vw, 48px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.055em;
+    text-align: left;
+  }
+
+  .hero-left .hero-text {
+    width: 100%;
+    margin: 0 0 22px !important;
+    font-family: Manrope, Arial, sans-serif;
+    font-size: clamp(17px, 4vw, 20px) !important;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .hero-left .location-title {
+    gap: 10px;
+    margin: 0;
+  }
+
+  .hero-left .location-mobile-name {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .hero-left .hero-university {
+    max-width: none;
+    margin: 5px 0 0 !important;
+    padding-left: 35px;
+    font-size: 15px !important;
+    line-height: 1.4;
+  }
+
+  .hero-left .hero-badges {
+    align-self: flex-start;
+    justify-content: flex-start !important;
+    width: fit-content;
+    margin: 20px 0 !important;
+    padding: 9px 13px;
+    border-radius: 999px;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .hero-left .hero-note {
+    align-self: flex-start;
+    margin: -4px 0 22px;
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .hero-left .hero-photos {
+    width: 100%;
+    gap: 10px;
+    margin: 0 0 22px;
+  }
+
+  .hero-left .hero-photos img {
+    width: calc(50% - 5px) !important;
+    height: auto !important;
+    aspect-ratio: 1.2;
+    object-fit: cover !important;
+    transform: none !important;
+    border-radius: 12px;
   }
 }
