@@ -181,35 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initPhotoCarousel('pekinAccommodationTrack', 'pekinAccommodationDots');
     initPhotoCarousel('jinanAccommodationTrack', 'jinanAccommodationDots');
 
-    // CSS animates the strips; pause them while off screen to save work on phones.
-    const movingTracks = ['chinaInsideTrack', 'carouselTrack']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-    if (movingTracks.length) {
-        const setPlaying = (track, playing) => {
-            const active = playing && !document.hidden;
-            track.style.animationPlayState = active ? 'running' : 'paused';
-            track.classList.toggle('is-playing', active);
-        };
-        const movingObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const track = entry.target.querySelector('.carousel-track');
-                if (track) setPlaying(track, entry.isIntersecting);
-            });
-        }, { rootMargin: '100px 0px' });
-
-        movingTracks.forEach(track => {
-            setPlaying(track, false);
-            movingObserver.observe(track.closest('.carousel-container'));
-        });
-        document.addEventListener('visibilitychange', () => {
-            movingTracks.forEach(track => {
-                const rect = track.closest('.carousel-container').getBoundingClientRect();
-                setPlaying(track, rect.bottom > 0 && rect.top < window.innerHeight);
-            });
-        });
-    }
-
     // ===== 6. ПОСТЕПЕННАЯ ПРОГРУЗКА СЕКЦИЙ (Lazy Appear) =====
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
