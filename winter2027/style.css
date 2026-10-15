@@ -3603,7 +3603,7 @@ main > section .section-title {
   .hero-left h1 {
     width: 100%;
     margin: 0 0 22px;
-    font-size: clamp(36px, 7.2vw, 48px) !important;
+    font-size: clamp(42px, 7.2vw, 48px) !important;
     line-height: 1.48 !important;
     letter-spacing: -0.055em;
     text-align: left;
