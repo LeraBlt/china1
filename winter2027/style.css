@@ -228,7 +228,7 @@ body {
 
 .btn-main {
     display: inline-block;
-    background: #ff2d2d;
+    background: var(--red);
     color: white;
     padding: 16px 30px;
     border-radius: 12px;
@@ -780,6 +780,10 @@ body {
 .location-pin {
   font-size: 25px;
   line-height: 1;
+}
+
+.location-mobile-name {
+  display: none;
 }
 /* ============================================================
    9. BFSU / JGC SECTIONS
@@ -1891,7 +1895,7 @@ body {
    ============================================================ */
 .faq-section {
     background-color: #ffffff;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .faq-container {
@@ -2300,7 +2304,7 @@ body {
    28. CAMPUS-СПЕЦИФИКА (дополнительно)
    ============================================================ */
 .bg-light {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
 
@@ -3205,8 +3209,19 @@ body {
         flex-direction: column !important;
     }
     .campus-title {
-        font-size: 28px !important;
+        font-size:  clamp(2px, 6vw, 24px) !important;
         margin-bottom: 30px !important;
+    }
+
+    .campus-card h3 {
+        font-size: 19px;
+        margin: 15px;
+    }
+
+    .campus-card p {
+        font-size: 14px;
+        margin: 0 15px 18px;
+        color: #1a2a4f;
     }
     .schedule-table {
         min-width: 100%;
@@ -3299,6 +3314,7 @@ body {
   margin: 0 0 18px;
   color: #515b55;
   line-height: 1.75;
+  font-family: Georgia, serif;
 }
 
 .hero-text strong,
@@ -3322,7 +3338,6 @@ body {
   gap: 10px 18px;
   margin: 26px 0 18px;
   color: var(--ink);
-  font-size: 12px;
 }
 
 .hero-badges i {
@@ -3335,30 +3350,7 @@ body {
   font-size: 10px;
 }
 
-.hero-photos {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 25px;
-}
 
-.hero-photos img {
-  width: 220px;
-  height: 170px;
-  border-radius: 2px;
-  object-fit: cover;
-}
-
-.btn-main {
-  display: inline-block;
-  padding: 17px 24px;
-  border-radius: 100px;
-  background: var(--red);
-  color: white;
-  font-size: 13px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-}
 
 .btn-main:hover {
   background: var(--red-deep);
@@ -3425,7 +3417,7 @@ main > section .section-title {
 .telegram-review-section .qr-list {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(8px, 2vw, 20px);
+  gap: clamp(6px, 1.5vw, 18px);
   width: 100%;
   align-items: start;
 }
@@ -3441,10 +3433,31 @@ main > section .section-title {
 }
 
 .telegram-review-section .qr-container-simple {
-  width: min(100%, 220px);
+  width: min(100%, 200px);
+  max-width: 100%;
   height: auto;
   aspect-ratio: 1;
   margin: 0 auto;
+}
+
+.telegram-review-section .qr-img-fixed {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The source images have different built-in whitespace around the codes. */
+.telegram-review-section .qr-item:first-child .qr-img-fixed {
+  transform: translateY(4%);
+}
+
+.telegram-review-section .qr-item:nth-child(2) .qr-img-fixed {
+  transform: translateY(-1.5%);
+}
+
+.telegram-review-section .qr-item:last-child .qr-img-fixed {
+  transform: scale(0.95);
 }
 
 .telegram-review-section .qr-subtext {
@@ -3455,17 +3468,102 @@ main > section .section-title {
 
 .telegram-review-section .btn {
   display: inline-flex;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
 }
 
-@media (max-width: 380px) {
-  .telegram-review-section .qr-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+.telegram-review-section .btn .fa-telegram {
+  flex: 0 0 auto;
+}
+
+.telegram-review-section .qr-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: min(80%, 180px);
+  max-width: 100%;
+  margin: 20px auto 0;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .telegram-review-section .qr-link {
+    margin-top: 16px;
+    padding: 9px 7px;
+    font-size: clamp(11px, 2.8vw, 13px);
+    gap: 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-left .location-title {
+    align-self: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
   }
 
-  .telegram-review-section .qr-item:last-child {
-    grid-column: 1 / -1;
-    width: 50%;
-    justify-self: center;
+  .hero-left .location-title h3,
+  .hero-left .hero-university strong,
+  .hero-left .hero-university br {
+    display: none;
+  }
+
+  .hero-left .location-mobile-name {
+    display: block;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .hero-left .hero-university {
+    align-self: flex-start;
+    width: 100%;
+    margin: 4px 0 0 !important;
+    padding-left: 37px;
+    text-align: left;
+  }
+
+  .hero-left .hero-date {
+    font-size: clamp(14px, 3.5vw, 17px);
+    letter-spacing: 0.06em;
+  }
+
+  .hero-left .hero-badges {
+    font-size: 17px;
+    line-height: 1.4;
+    gap: 8px;
+  }
+
+  .hero-left .hero-badges i {
+    margin-right: 0;
+  }
+
+  #team .team-card-image {
+    width: min(100%, 250px);
+    max-width: 250px;
+    margin: 0 auto 20px;
+  }
+
+  #team .team-card-image .image-placeholder {
+    width: 100%;
+    max-width: none !important;
+    margin: 0 auto;
+  }
+
+  #team .team-card-image .image-placeholder span,
+  #team .team-card-image .image-placeholder img {
+    display: block;
+    width: 100%;
+  }
+
+  #team .team-card-image .image-placeholder img {
+    height: auto !important;
   }
 }
