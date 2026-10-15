@@ -2112,8 +2112,8 @@ body {
 }
 
 .footer-qr-wrapper img {
-    width: 40%;
-    height: 40%;
+    width: 60%;
+    height: 60%;
     margin-bottom: 15px;
     border-radius: 8px;
 }
@@ -3604,7 +3604,7 @@ main > section .section-title {
     width: 100%;
     margin: 0 0 22px;
     font-size: clamp(36px, 7.2vw, 48px) !important;
-    line-height: 1.08 !important;
+    line-height: 1.48 !important;
     letter-spacing: -0.055em;
     text-align: left;
   }
