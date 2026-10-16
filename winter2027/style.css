@@ -587,7 +587,7 @@ body {
 }
 
 .campus-wrapper {
-    background-image: url("img/76.jpg");
+    background-image: url("img/76.webp");
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -635,7 +635,7 @@ body {
 .campus-card h3 {
     font-size: 24px;
     margin: 15px;
-    text-align: center;
+    text-align: left;
     line-height: 1.25;
 }
 
@@ -643,6 +643,7 @@ body {
     font-size: 21px;
     margin: 0 15px 18px;
     color: #1a2a4f;
+    text-align: left;
 }
 
 .campus-split-column {
@@ -962,7 +963,7 @@ body {
 
 .wide-program-grid {
     display: flex;
-    gap: 25px;
+    gap: 8px;
     margin-top: 40px;
     margin-bottom: 60px;
 }
@@ -1025,6 +1026,7 @@ body {
 
 .excursions-slider {
     position: relative;
+    padding: 0 44px;
 }
 
 #excursions .excursions-grid {
@@ -1045,40 +1047,16 @@ body {
     scroll-snap-align: start;
 }
 
-.excursions-arrow {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    width: 42px;
-    height: 42px;
-    border: 1px solid #b59d5c;
-    border-radius: 50%;
-    background: #fff;
-    color: #b59d5c;
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-    transform: translateY(-50%);
-}
-
-.excursions-arrow-prev {
-    left: -20px;
-}
-
-.excursions-arrow-next {
-    right: -20px;
-}
-
 @media (max-width: 768px) {
+    .excursions-slider {
+        padding: 0;
+    }
+
     #excursions .excursions-grid {
         grid-template-columns: none !important;
         grid-auto-columns: min(82vw, 320px);
         gap: 16px;
         margin: 24px 0;
-    }
-
-    .excursions-arrow {
-        display: none;
     }
 }
 
@@ -2236,6 +2214,24 @@ body {
     line-height: 1.4;
 }
 
+.footer-channel-button {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #b8a05d;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+}
+
+.footer-channel-button:hover,
+.footer-channel-button:focus-visible {
+    background: #a38b4e;
+    color: #fff;
+}
+
 /* ============================================================
    23. CAROUSELS & SLIDERS (общие стили)
    ============================================================ */
@@ -2293,6 +2289,10 @@ body {
     border-radius: 8px;
 }
 
+.campus-gallery-section {
+    padding-top: 48px;
+}
+
 @media (min-width: 769px) {
     .city-gallery-section .media-grid-item,
     .campus-gallery-section .media-grid-item {
@@ -2302,6 +2302,12 @@ body {
     .city-gallery-section .media-grid-item img,
     .campus-gallery-section .media-grid-item img {
         height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .campus-gallery-section {
+        padding-top: 36px;
     }
 }
 
@@ -2338,6 +2344,10 @@ body {
 
 .carousel-nav-btn.next {
     right: 0;
+}
+
+#excursions .excursions-slider .carousel-nav-btn {
+    top: 150px;
 }
 
 .carousel-dots {
