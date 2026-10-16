@@ -1023,6 +1023,65 @@ body {
     margin: 40px 0;
 }
 
+.excursions-slider {
+    position: relative;
+}
+
+#excursions .excursions-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 72px) / 4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+#excursions .excursions-grid::-webkit-scrollbar {
+    display: none;
+}
+
+#excursions .excursion-card {
+    scroll-snap-align: start;
+}
+
+.excursions-arrow {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #b59d5c;
+    border-radius: 50%;
+    background: #fff;
+    color: #b59d5c;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.excursions-arrow-prev {
+    left: -20px;
+}
+
+.excursions-arrow-next {
+    right: -20px;
+}
+
+@media (max-width: 768px) {
+    #excursions .excursions-grid {
+        grid-template-columns: none !important;
+        grid-auto-columns: min(82vw, 320px);
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .excursions-arrow {
+        display: none;
+    }
+}
+
 .excursion-card {
     background: white;
     border-radius: 16px;
@@ -2234,6 +2293,18 @@ body {
     border-radius: 8px;
 }
 
+@media (min-width: 769px) {
+    .city-gallery-section .media-grid-item,
+    .campus-gallery-section .media-grid-item {
+        aspect-ratio: 0.9;
+    }
+
+    .city-gallery-section .media-grid-item img,
+    .campus-gallery-section .media-grid-item img {
+        height: 100%;
+    }
+}
+
 .carousel-nav-btn {
     position: absolute;
     top: 50%;
@@ -2381,7 +2452,7 @@ body {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    height: 260px;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2394,6 +2465,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
 }
 

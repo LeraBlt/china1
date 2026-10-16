@@ -95,6 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel('jinanExcCarousel', 'prevJinanExc', 'nextJinanExc', 'jinanExcDots');
     initCarousel('memoriesCarousel', 'prevMemories', 'nextMemories', 'memoriesDots');
 
+    const excursionsTrack = document.getElementById('excursionsTrack');
+    if (excursionsTrack) {
+        const cards = excursionsTrack.querySelectorAll('.excursion-card');
+        const step = () => cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 0;
+        document.querySelector('.excursions-arrow-prev')?.addEventListener('click', () => {
+            excursionsTrack.scrollBy({ left: -step(), behavior: 'smooth' });
+        });
+        document.querySelector('.excursions-arrow-next')?.addEventListener('click', () => {
+            excursionsTrack.scrollBy({ left: step(), behavior: 'smooth' });
+        });
+    }
+
 
 // ===== 4. СЛАЙДЕР ОТЗЫВОВ (С авто-высотой + Свайпы) =====
     const reviewsCarousel = document.getElementById('reviewsCarousel');
