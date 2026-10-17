@@ -17,7 +17,7 @@ body {
     font-family: "Helvetica Neue", "Helvetica", Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", sans-serif;
     color: #1a2a4f;
     line-height: 1.5;
-    background-color: #ffffff;
+    background-color: #f5f6fb;
 }
 
 .container {
@@ -479,8 +479,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    padding: 20px 0;
-    min-height: 600px;
+    padding: 50px 0 10px;
     width: 100%;
     overflow: hidden;
 }
@@ -566,7 +565,7 @@ body {
 }
 
 .feature-card h3 {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 15px;
@@ -575,7 +574,7 @@ body {
 .feature-card p {
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 /* ============================================================
@@ -845,7 +844,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    padding: 40px 0;
+    padding: 60px 0;
 }
 
 .bfsu-section::before {
@@ -870,7 +869,7 @@ body {
 }
 
 .bfsu-section .section-subtitle {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
     margin-bottom: 30px;
 }
@@ -915,7 +914,7 @@ body {
    10. PROGRAM & FEATURES
    ============================================================ */
 .program-section {
-    background: #ffffff;
+    background: #f5f6fb;
 }
 
 .program-features-flex {
@@ -1269,7 +1268,7 @@ body {
    14. PRICING & DETAILS
    ============================================================ */
 .program-details-section {
-    background: #ffffff;
+    background: #f5f6fb;
 }
 
 .details-grid {
@@ -1679,7 +1678,7 @@ body {
    18. PARTNERS / COLLABORATION
    ============================================================ */
 .collab-compact-section {
-    background-color: #ffffff;
+    background-color: #f5f6fb;
 }
 
 .ca-mini-list {
@@ -1895,7 +1894,7 @@ body {
    20. ABOUT COMPANY
    ============================================================ */
 .about-company-new {
-    background-color: #ffffff;
+    background-color: #f5f6fb;
 }
 
 .about-header {
@@ -1981,7 +1980,7 @@ body {
    21. FAQ
    ============================================================ */
 .faq-section {
-    background-color: #ffffff;
+    background-color: #f5f6fb;
     padding: 15px 0;
 }
 
@@ -2309,6 +2308,7 @@ body {
     .campus-gallery-section {
         padding-top: 36px;
     }
+
 }
 
 .carousel-nav-btn {
@@ -3814,3 +3814,4 @@ main > section .section-title {
   }
 
 }
+
