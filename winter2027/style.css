@@ -45,7 +45,9 @@ body {
 
 .text-center {
     text-align: center;
+    font-size: 20px;
 }
+
 
 /* ============================================================
    3. HEADER & NAVIGATION
@@ -449,7 +451,7 @@ body {
 .fact-content {
     position: absolute;
     bottom: 30px;
-    left: 30px;
+    left: 10px;
     color: #fff;
     z-index: 3;
 }
@@ -464,7 +466,7 @@ body {
 }
 
 .fact-text {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -725,6 +727,7 @@ body {
     font-size: 28px;
     margin-bottom: 15px;
     font-weight: 700;
+    margin-left: 10px;
 }
 
 .card-text-side p {
@@ -810,6 +813,11 @@ body {
     font-size: 18px;
     line-height: 1.6;
     color: #334;
+}
+
+.campus-info .info-list li {
+    font-size: 20px;
+    line-height: 1.55;
 }
 
 .location-title {
@@ -1002,7 +1010,7 @@ body {
 }
 
 .card-overlay-wide p {
-    font-size: 16px;
+    font-size: 20px;
     opacity: 0.9;
     max-width: 80%;
     line-height: 1.4;
@@ -1084,7 +1092,7 @@ body {
 .excursion-card p {
     padding: 0 20px 20px;
     color: #4b5563;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.5;
     flex: 1;
 }
@@ -1326,7 +1334,7 @@ body {
     padding-left: 20px;
     margin-bottom: 12px;
     color: #475569;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.4;
 }
 
@@ -1600,7 +1608,7 @@ body {
 }
 
 .project-content p {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.5;
     opacity: 0.9;
     margin: 0;
@@ -1935,7 +1943,7 @@ body {
 }
 
 .stat-desc {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
     line-height: 1.4;
 }
@@ -2033,6 +2041,7 @@ body {
 
 .faq-answer li {
     margin-bottom: 8px;
+    font-size: 18px;
 }
 
 .faq-item:hover .faq-question {
@@ -2579,6 +2588,7 @@ body {
     }
     .feature-item {
         flex: 1 1 45%;
+        font-size: 18px;
     }
     .telegram-review-wrapper {
         flex-direction: column;
@@ -2615,6 +2625,31 @@ body {
 }
 
 @media (max-width: 768px) {
+    #features .wide-program-grid .program-card-wide {
+        display: flex;
+        align-items: center;
+        min-height: 190px;
+        height: auto;
+        background: #1a2a4f;
+    }
+
+    #features .wide-program-grid .program-card-wide > img {
+        display: none;
+    }
+
+    #features .wide-program-grid .card-overlay-wide {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        padding: 24px;
+        background: none;
+    }
+
+    .card-overlay-wide p {
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 100% !important;
+    }
+
     .container {
         padding: 0 15px;
     }
@@ -2736,7 +2771,7 @@ body {
     }
     .hero-info .info-card p {
         margin: 0 !important;
-        font-size: 15px !important;
+        font-size: 17px !important;
         line-height: 1.3 !important;
         color: #1a2a4f !important;
     }
@@ -2840,11 +2875,17 @@ body {
         display: none !important;
     }
 
+    .program-section .wide-program-grid {
+        display: block;
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
     .program-section .program-row {
         display: flex !important;
         flex-direction: column !important;
-        gap: 15px !important;
-        margin-bottom: 15px !important;
+        gap: 12px !important;
+        margin-bottom: 12px !important;
     }
     .program-section .program-card-wide {
         width: 100% !important;
@@ -2863,13 +2904,33 @@ body {
         font-size: 18px !important;
         margin-bottom: 5px !important;
     }
-    .card-overlay-wide p {
-        width: 100% !important;
-        max-width: 100% !important;
-        font-size: 14px !important;
-        line-height: 1.3 !important;
-        padding: 0 5px !important;
+
+    .program-section .program-card-wide {
+        display: flex;
+        align-items: center;
+        height: auto !important;
+        min-height: 150px;
+        background: #1a2a4f;
     }
+
+    .program-section .program-card-wide > img {
+        display: none;
+    }
+
+    .program-section .card-overlay-wide {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        padding: 20px !important;
+        background: none;
+    }
+
+    .program-section .card-overlay-wide p {
+        max-width: 100%;
+        color: #ffffff;
+        opacity: 1;
+    }
+    
 
     .excursions-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -2987,8 +3048,30 @@ body {
         padding-right: 5px !important;
     }
     .card-text-side p {
+        font-size: 18px;
         width: 100% !important;
         max-width: 100% !important;
+        padding: 0 10px 0;
+    }
+    .card-overlay-wide h3 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    .wide-program-grid {
+        display: flex;
+        gap: 8px;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    .fact-text {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .review-card {
@@ -3026,7 +3109,7 @@ body {
         text-align: left !important;
         padding: 0 10px;
         line-height: 1.5;
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .projects-grid {
@@ -3068,6 +3151,12 @@ body {
     .bonus-line {
         flex-direction: column;
         text-align: center;
+    }
+
+    .project-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
     }
 
     .about-content-grid {
@@ -3142,6 +3231,7 @@ body {
     }
     .footer-description {
         margin: 0 !important;
+        font-size: 18px;
     }
 
     .media-carousel {
@@ -3192,11 +3282,13 @@ body {
         margin: 12px 0 8px;
         font-size: 22px;
     }
-    #features .card-text-side {
-        border-radius: 24px;
-        text-align: center;
-        padding: 30px 20px;
+
+    .project-content {
+        left: 15px;
+        right: 15px;
+        
     }
+   
     #features .card-image-side {
         display: none !important;
     }
@@ -3235,11 +3327,11 @@ body {
         font-size: 20px;
     }
     .step-content h3 {
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 5px;
     }
     .step-content p {
-        font-size: 14px;
+        font-size: 18px;
     }
     .photo-grid-quad {
         grid-template-columns: 1fr;
@@ -3253,10 +3345,7 @@ body {
         width: 180px;
         height: 180px;
     }
-    .qr-subtext {
-        font-size: 16px;
-        max-width: 250px;
-    }
+    
     .scan-label {
         font-size: 22px;
     }
@@ -3302,9 +3391,7 @@ body {
         width: 150px;
         height: 150px;
     }
-    .qr-subtext {
-        font-size: 15px;
-    }
+    
 }
 
 /* ============================================================
@@ -3339,7 +3426,7 @@ body {
         display: list-item !important;
         text-align: left !important;
         margin-bottom: 12px !important;
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
     .accommodation-list {
         list-style-type: disc !important;
@@ -3368,9 +3455,7 @@ body {
     .schedule-wrapper {
         overflow-x: scroll;
     }
-    .faq-question {
-        font-size: 16px;
-    }
+    
     
 }
 
@@ -3535,7 +3620,7 @@ main > section .section-title {
 
 @media (max-width: 768px) {
   main > section .section-title {
-    font-size: clamp(25px, 6vw, 32px) !important;
+    font-size: clamp(28px, 6vw, 32px) !important;
   }
 }
 
@@ -3552,11 +3637,7 @@ main > section .section-title {
   min-width: 0;
 }
 
-.telegram-review-section .scan-label {
-  margin: 0 0 8px;
-  font-size: clamp(13px, 1.7vw, 24px);
-  line-height: 1.25;
-}
+
 
 .telegram-review-section .qr-container-simple {
   width: min(100%, 200px);
@@ -3721,7 +3802,7 @@ main > section .section-title {
     align-self: flex-start;
     margin: 0 0 18px;
     padding: 0;
-    font-size: clamp(13px, 3.2vw, 16px);
+    font-size: clamp(15px, 3.2vw, 16px);
     line-height: 1.4;
     letter-spacing: 0.06em;
     text-align: left;
