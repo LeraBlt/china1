@@ -44,7 +44,6 @@ body {
 }
 
 .text-center {
-    text-align: center;
     font-size: 20px;
 }
 
@@ -789,6 +788,10 @@ body {
     gap: 20px;
 }
 
+.info-gallery-dots {
+    display: none;
+}
+
 .info-images img {
     width: 100%;
     height: 220px;
@@ -880,6 +883,15 @@ body {
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .bfsu-section .section-title,
+    .bfsu-section .section-subtitle,
+    #excursions .section-title,
+    #excursions > .container > p.text-center {
+        text-align: left !important;
+    }
 }
 
 .jgc-section {
@@ -1056,8 +1068,8 @@ body {
 
     #excursions .excursions-grid {
         grid-template-columns: none !important;
-        grid-auto-columns: min(82vw, 320px);
-        gap: 16px;
+        grid-auto-columns: 74%;
+        gap: 12px;
         margin: 24px 0;
     }
 }
@@ -2625,28 +2637,8 @@ body {
 }
 
 @media (max-width: 768px) {
-    #features .wide-program-grid .program-card-wide {
-        display: flex;
-        align-items: center;
-        min-height: 190px;
-        height: auto;
-        background: #1a2a4f;
-    }
-
-    #features .wide-program-grid .program-card-wide > img {
-        display: none;
-    }
-
-    #features .wide-program-grid .card-overlay-wide {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        padding: 24px;
-        background: none;
-    }
-
     .card-overlay-wide p {
-        color: rgba(255, 255, 255, 0.8);
+        color: #ffffff;
         max-width: 100% !important;
     }
 
@@ -2828,24 +2820,50 @@ body {
         order: 1 !important;
         text-align: center;
     }
+    .campus-info .info-text {
+        display: contents;
+    }
+    .campus-info .info-text h2 {
+        order: 1;
+        width: 100%;
+        margin-bottom: 0;
+    }
     .info-block .info-images,
     .info-block.reverse .info-images {
         order: 2 !important;
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        display: flex !important;
         gap: 12px !important;
         width: 100% !important;
-        margin-top: 10px;
+        margin-top: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
     }
-    .info-images img {
-        width: 100% !important;
-        height: 180px !important;
+    .campus-info .info-images::-webkit-scrollbar {
+        display: none;
+    }
+    .campus-info .info-images img {
+        flex: 0 0 calc((100% - 12px) / 2);
+        width: calc((100% - 12px) / 2) !important;
+        height: clamp(170px, 50vw, 225px) !important;
         object-fit: cover !important;
         border-radius: 15px !important;
+        scroll-snap-align: start;
     }
-    .info-images img:only-child {
-        grid-column: span 2 !important;
-        height: 250px !important;
+    .campus-info .info-gallery-dots {
+        order: 3;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+    }
+    .campus-info .info-gallery-dots .photo-dot {
+        padding: 0;
+    }
+    .campus-info .info-list {
+        order: 4;
+        width: 100%;
     }
     .info-text h2 {
         font-size: 32px !important;
@@ -2901,36 +2919,9 @@ body {
         padding: 15px !important;
     }
     .program-section .card-overlay-wide h3 {
-        font-size: 18px !important;
+        font-size: 20px !important;
         margin-bottom: 5px !important;
     }
-
-    .program-section .program-card-wide {
-        display: flex;
-        align-items: center;
-        height: auto !important;
-        min-height: 150px;
-        background: #1a2a4f;
-    }
-
-    .program-section .program-card-wide > img {
-        display: none;
-    }
-
-    .program-section .card-overlay-wide {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        padding: 20px !important;
-        background: none;
-    }
-
-    .program-section .card-overlay-wide p {
-        max-width: 100%;
-        color: #ffffff;
-        opacity: 1;
-    }
-    
 
     .excursions-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -3113,7 +3104,25 @@ body {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .projects-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .projects-grid .project-item {
+        flex: 0 0 74%;
+        height: 360px;
+        scroll-snap-align: start;
+    }
+    .projects-grid .project-content {
+        top: 95px;
+        bottom: auto;
     }
 
     .telegram-review-wrapper {
@@ -3700,6 +3709,16 @@ main > section .section-title {
 }
 
 @media (max-width: 768px) {
+  .telegram-review-section .scan-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5em;
+    margin: 0 0 8px;
+    line-height: 1.25;
+    text-align: center;
+  }
+
   .telegram-review-section .qr-link {
     margin-top: 16px;
     padding: 9px 7px;

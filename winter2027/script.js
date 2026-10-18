@@ -193,6 +193,47 @@ document.addEventListener('DOMContentLoaded', () => {
     initPhotoCarousel('pekinAccommodationTrack', 'pekinAccommodationDots');
     initPhotoCarousel('jinanAccommodationTrack', 'jinanAccommodationDots');
 
+    document.querySelectorAll('.campus-info .info-block .info-images').forEach(track => {
+        const images = Array.from(track.querySelectorAll('img'));
+        if (images.length < 3) return;
+
+        const dots = document.createElement('div');
+        dots.className = 'info-gallery-dots';
+        const lastIndex = images.length - 2;
+        const buttons = [];
+
+        const setActive = index => {
+            buttons.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+                button.setAttribute('aria-current', i === index ? 'true' : 'false');
+            });
+        };
+
+        for (let i = 0; i <= lastIndex; i++) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'photo-dot';
+            button.setAttribute('aria-label', `Показать фотографии ${i + 1} и ${i + 2}`);
+            button.addEventListener('click', () => {
+                track.scrollTo({
+                    left: images[i].offsetLeft - images[0].offsetLeft,
+                    behavior: 'smooth'
+                });
+            });
+            dots.appendChild(button);
+            buttons.push(button);
+        }
+
+        track.after(dots);
+        setActive(0);
+        track.addEventListener('scroll', () => {
+            const step = images[1].offsetLeft - images[0].offsetLeft;
+            if (step > 0) {
+                setActive(Math.min(lastIndex, Math.max(0, Math.round(track.scrollLeft / step))));
+            }
+        }, { passive: true });
+    });
+
     // Use elapsed time so lower frame rates do not change the pace of either moving strip.
     function initTimeDrivenTrack(trackId) {
         const track = document.getElementById(trackId);
