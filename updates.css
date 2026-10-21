@@ -1,0 +1,59 @@
+.brand-logo {
+  mix-blend-mode: multiply;
+}
+.hero-title-line { white-space: nowrap; }
+@media (max-width: 760px) {
+  .hero h1 { font-size: clamp(32px, 8.5vw, 64px); }
+}
+
+.marquee-track {
+  animation: winter-gallery-scroll 30s linear infinite;
+}
+
+@keyframes winter-gallery-scroll {
+  0%, 100% { transform: translateX(0); }
+  45%, 50% { transform: translateX(-50%); }
+  95% { transform: translateX(0); }
+}
+
+.reviews h2, .memories h2 { margin-bottom: 36px; }
+.content-carousel { position: relative; padding: 0 54px; }
+.carousel-window { overflow: hidden; border-radius: 16px; }
+.carousel-slides { display: flex; align-items: flex-start; transition: transform .4s ease; }
+.carousel-slide { flex: 0 0 100%; min-width: 0; box-sizing: border-box; }
+.review-slide { display: grid; grid-template-columns: 1fr 1fr; background: #fff; min-height: 400px; }
+.review-slide > img { width: 100%; height: 400px; object-fit: contain; background: #f5f5f5; }
+.review-slide > div { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
+.review-slide p { font-size: 16px; line-height: 1.75; font-style: italic; margin: 0 0 24px; }
+.review-slide strong { font-size: 17px; color: var(--red); }
+.review-slide span { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.carousel-arrow { position: absolute; top: 45%; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--ink); font-size: 32px; line-height: 1; z-index: 1; }
+.carousel-arrow:hover { background: var(--red); color: white; }
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+.carousel-dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+.carousel-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; background: #b9bdb8; }
+.carousel-dots button[aria-current="true"] { background: var(--red); }
+.program-photos img { height: 300px; object-position: center top; }
+.memory-slide { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.memory-slide video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #182b28; }
+
+@media (max-width: 760px) {
+  .content-carousel { padding: 0 42px; }
+  .review-slide { grid-template-columns: 1fr; }
+  .review-slide > img { height: 300px; }
+  .review-slide > div { padding: 26px; }
+  .program-photos img { height: 220px; }
+}
+@media (max-width: 520px) {
+  .content-carousel { padding: 0 32px; }
+  .carousel-arrow { width: 28px; height: 36px; font-size: 25px; }
+  .review-slide > img { height: 240px; }
+  .memory-slide { gap: 8px; }
+  .memory-slide video { aspect-ratio: 3 / 4; }
+  .program-photos img { height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .carousel-slides { transition: none; }
+}
