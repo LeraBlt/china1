@@ -23,24 +23,38 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const windowEl = carousel.querySelector('.carousel-window');
   let index = 0;
   let touchStart = 0;
+  const getPerView = () => window.innerWidth > 760
+    ? Number(carousel.dataset.desktopPerView || 1)
+    : 1;
+  let perView = getPerView();
+
+  const buildDots = () => {
+    dots.replaceChildren();
+    const pages = Math.ceil(slides.length / perView);
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Показать ${i + 1} из ${pages}`);
+      dot.addEventListener('click', () => goTo(i));
+      dots.appendChild(dot);
+    }
+  };
 
   const goTo = (next) => {
-    index = (next + slides.length) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
+    const pages = Math.ceil(slides.length / perView);
+    index = (next + pages) % pages;
+    const first = index * perView;
+    const offset = slides[first].offsetLeft - slides[0].offsetLeft;
+    track.style.transform = `translateX(-${offset}px)`;
     dots.querySelectorAll('button').forEach((dot, i) => {
       dot.setAttribute('aria-current', String(i === index));
     });
     carousel.querySelectorAll('video').forEach((video) => video.pause());
-    windowEl.style.height = `${slides[index].offsetHeight}px`;
+    const visible = slides.slice(first, first + perView);
+    windowEl.style.height = `${Math.max(...visible.map((slide) => slide.offsetHeight))}px`;
   };
 
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.setAttribute('aria-label', `Показать ${i + 1} из ${slides.length}`);
-    dot.addEventListener('click', () => goTo(i));
-    dots.appendChild(dot);
-  });
+  buildDots();
   carousel.querySelector('.carousel-prev').addEventListener('click', () => goTo(index - 1));
   carousel.querySelector('.carousel-next').addEventListener('click', () => goTo(index + 1));
   track.addEventListener('touchstart', (event) => {
@@ -50,7 +64,17 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     const distance = touchStart - event.changedTouches[0].screenX;
     if (Math.abs(distance) > 50) goTo(index + (distance > 0 ? 1 : -1));
   }, { passive: true });
-  window.addEventListener('resize', () => goTo(index), { passive: true });
+  window.addEventListener('resize', () => {
+    const firstVisible = index * perView;
+    const nextPerView = getPerView();
+    if (nextPerView !== perView) {
+      perView = nextPerView;
+      buildDots();
+      goTo(Math.floor(firstVisible / perView));
+    } else {
+      goTo(index);
+    }
+  }, { passive: true });
   slides.forEach((slide) => slide.querySelectorAll('img').forEach((img) => {
     img.addEventListener('load', () => goTo(index), { once: true });
   }));

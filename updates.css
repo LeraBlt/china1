@@ -62,7 +62,7 @@
 .carousel-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; background: #b9bdb8; }
 .carousel-dots button[aria-current="true"] { background: var(--red); }
 .program-photos img { height: 300px; object-position: center top; }
-.memory-slide { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.memory-slide { flex: 0 0 50%; padding: 0 10px; }
 .memory-slide video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #182b28; }
 
 @media (max-width: 760px) {
@@ -71,12 +71,12 @@
   .review-slide > img { height: 300px; }
   .review-slide > div { padding: 26px; }
   .program-photos img { height: 220px; }
+  .memory-slide { flex-basis: 100%; padding: 0; }
 }
 @media (max-width: 520px) {
   .content-carousel { padding: 0 32px; }
   .carousel-arrow { width: 28px; height: 36px; font-size: 25px; }
   .review-slide > img { height: 240px; }
-  .memory-slide { gap: 8px; }
   .memory-slide video { aspect-ratio: 3 / 4; }
   .program-photos img { height: 190px; }
 }
