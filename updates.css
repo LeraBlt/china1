@@ -1,6 +1,33 @@
 .brand-logo {
   mix-blend-mode: multiply;
 }
+.trust-logos { background: var(--paper); padding: 0; mix-blend-mode: normal; }
+.header-contact { display: flex; align-items: center; gap: 12px; flex: none; }
+.header-phone { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border-radius: 100px;  white-space: nowrap; font-size: 13px; font-weight: 800; }
+.header-phone svg { width: 18px; height: 18px; color: #aa925b; }
+.header-social { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; }
+.header-telegram { color: #fff; background: #229ed9; }
+.header-telegram svg { width: 23px; height: 23px; }
+.header-max img { display: block; width: 36px; height: 36px; border-radius: 9px; }
+.header-contact a:hover { transform: translateY(-2px); }
+.header-contact a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+@media (max-width: 1100px) {
+  .nav-shell { gap: 18px; }
+  .main-nav { gap: 15px; }
+  .header-contact { margin-left: auto; gap: 8px; }
+}
+@media (max-width: 620px) {
+  .header-phone { width: 36px; height: 36px; padding: 0; justify-content: center; }
+  .header-phone span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+  .header-contact { margin-left: auto; }
+  .menu-toggle { margin-left: 0; }
+}
+@media (max-width: 390px) {
+  .nav-shell { gap: 8px; }
+  .header-contact { gap: 5px; }
+  .header-social { width: 32px; height: 32px; }
+  .header-max img { width: 32px; height: 32px; }
+}
 .hero-title-line { white-space: nowrap; }
 @media (max-width: 760px) {
   .hero h1 { font-size: clamp(32px, 8.5vw, 64px); }
@@ -56,4 +83,32 @@
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .carousel-slides { transition: none; }
+}
+
+.admissions-section { background: #f9f7f2; }
+.admissions-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 7vw; align-items: start; margin-bottom: 48px; }
+.admissions-section h2, .gratitude-section h2 { font-size: clamp(44px, 5vw, 72px); line-height: 1.08; margin: 0; }
+.admissions-copy p, .gratitude-copy p { max-width: 610px; font-size: 15px; line-height: 1.85; color: #5d6761; margin: 0 0 18px; }
+.admissions-copy .feature-lead, .gratitude-copy .feature-lead { color: var(--ink); font-size: 20px; line-height: 1.55; font-weight: 700; }
+.admissions-copy .button { margin-top: 10px; }
+.admissions-letters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; max-width: 1060px; margin: 0 auto; }
+.admissions-letters a, .gratitude-image { display: block; overflow: hidden; background: #fff; box-shadow: 0 18px 45px rgba(27, 38, 33, .09); }
+.admissions-letters img { display: block; width: 100%; height: auto; }
+.gratitude-section { background: var(--paper-2); }
+.gratitude-layout { display: grid; grid-template-columns: 1fr minmax(310px, .8fr); gap: 8vw; align-items: center; }
+.gratitude-copy .section-label { display: block; margin-bottom: 25px; }
+.gratitude-copy h2 { margin-bottom: 35px; }
+.gratitude-copy .gratitude-signoff { color: var(--red); font-weight: 800; margin-top: 27px; }
+.gratitude-image { width: min(100%, 440px); justify-self: center; }
+.gratitude-image img { display: block; width: 100%; height: auto; }
+.admissions-letters a:focus-visible, .gratitude-image:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
+@media (max-width: 760px) {
+  .admissions-intro, .gratitude-layout { grid-template-columns: 1fr; gap: 32px; }
+  .admissions-letters { gap: 12px; }
+  .gratitude-image { width: min(100%, 440px); }
+}
+@media (max-width: 520px) {
+  .admissions-section h2, .gratitude-section h2 { font-size: clamp(40px, 9vw, 54px); }
+  .admissions-letters { grid-template-columns: 1fr; max-width: 430px; }
+  .admissions-copy .feature-lead, .gratitude-copy .feature-lead { font-size: 18px; }
 }
