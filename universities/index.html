@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../updates.css">
     <link rel="stylesheet" href="universities.css">
+    <script src="universities.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -78,12 +79,17 @@
               <span><strong>Пекин</strong><small>расположение</small></span>
               <span><strong>2 языка</strong><small>обучение на китайском и английском</small></span>
             </div>
-            <a class="university-card-link" href="#programs">Подробнее об университете <span aria-hidden="true">↗</span></a>
+            <button class="university-card-link" type="button" aria-controls="programs" aria-expanded="false" data-detail-trigger>Развернуть описание <span aria-hidden="true">↗</span></button>
           </div>
         </article>
       </section>
 
-      <section class="university-detail" id="programs" aria-labelledby="detail-title">
+      <details class="university-detail" id="programs">
+        <summary class="container university-detail-summary">
+          <span class="section-label">02 / BFSU</span>
+          <span class="detail-summary-title"><span class="detail-closed-label">Подробнее о Пекинском университете иностранных языков</span><span class="detail-open-label">Свернуть описание университета</span></span>
+          <span class="detail-summary-icon" aria-hidden="true">+</span>
+        </summary>
         <div class="container university-detail-grid">
           <div class="university-detail-heading">
             <span class="section-label">02 / BFSU</span>
@@ -100,7 +106,7 @@
             <a href="https://osao.bfsu.edu.cn/info/2612/7182.htm" target="_blank" rel="noopener noreferrer">Официальная информация BFSU о поступлении ↗</a>
           </div>
         </div>
-      </section>
+      </details>
 
       <section class="university-cta container" id="contact" aria-labelledby="cta-title">
         <div>

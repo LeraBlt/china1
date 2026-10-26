@@ -157,7 +157,7 @@
         <section class="section facts-section">
             <div class="container">
                 <h2 class="section-title text-center" style="margin-top: 50px;">Программа в цифрах</h2>
-                <div class="facts-grid">
+                <div class="facts-grid" id="factsTrack" tabindex="0" aria-label="Показатели программы, листайте карточки">
                     <div class="fact-card">
                         <img src="img/99.webp" alt="Города" class="fact-img" >
                         <div class="fact-overlay"></div>
@@ -193,6 +193,19 @@
                             <span class="fact-text">часов обучения</span>
                         </div>
                     </div>
+
+                    <div class="fact-card">
+                        <img src="img/img14.webp" alt="Вечерняя улица Пекина" class="fact-img" loading="lazy">
+                        <div class="fact-overlay"></div>
+                        <div class="fact-content">
+                            <span class="fact-number">14</span>
+                            <span class="fact-text">дней в Пекине</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="facts-slider-controls" aria-label="Управление карточками программы">
+                    <button class="facts-slider-arrow" id="factsPrev" type="button" aria-label="Предыдущая карточка" disabled>←</button>
+                    <button class="facts-slider-arrow" id="factsNext" type="button" aria-label="Следующая карточка">→</button>
                 </div>
 
             </div>
@@ -1456,6 +1469,24 @@
         </section>
         
         
+        <section class="section partner-gratitude-section" aria-labelledby="partner-gratitude-title">
+            <div class="container partner-gratitude-layout">
+                <div class="partner-gratitude-copy">
+                    <p class="partner-gratitude-kicker">СЛОВА ПАРТНЁРОВ</p>
+                    <h2 id="partner-gratitude-title" style="text-align: left; font-size: 40px;">Благодарственные письма</h2>
+                    <p class="partner-gratitude-intro">Еврогимназия и школа «Мистер Брейни» поделились впечатлениями о совместных программах и культурно-языковых поездках в Китай.</p>
+                </div>
+                <div class="partner-gratitude-gallery">
+                    <a href="../assets/благодарность.jpg" target="_blank" rel="noopener noreferrer" aria-label="Открыть благодарственное письмо Еврогимназии в полном размере">
+                        <img src="../assets/благодарность.jpg" alt="Благодарственное письмо Еврогимназии команде China Dreams" loading="lazy">
+                    </a>
+                    <a href="../assets/благодарность2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Открыть благодарственное письмо школы Мистер Брейни в полном размере">
+                        <img src="../assets/благодарность2.jpg" alt="Благодарственное письмо школы Мистер Брейни команде China Dreams" loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section id="faq" class="section faq-section">
             <div class="container">
                 <h2 class="section-title text-center" style="margin-top:50px">Частые вопросы родителей</h2>
@@ -1588,5 +1619,6 @@
 
     <!-- Подключаем внешний JS -->
     <script src="script.js" defer></script>
+    <script src="facts-slider.js" defer></script>
 </body>
 </html>
