@@ -51,12 +51,24 @@
 .carousel-window { overflow: hidden; border-radius: 16px; }
 .carousel-slides { display: flex; align-items: flex-start; transition: transform .4s ease; }
 .carousel-slide { flex: 0 0 100%; min-width: 0; box-sizing: border-box; }
-.review-slide { display: grid; grid-template-columns: 1fr 1fr; background: #fff; min-height: 400px; }
-.review-slide > img { width: 100%; height: 400px; object-fit: contain; background: #f5f5f5; }
+.review-slide { display: grid; grid-template-columns: 1fr 1fr; background: #fffdfa; min-height: 400px; }
+.review-slide > img { width: 100%; height: 400px; object-fit: contain; background: #e9e6df; }
 .review-slide > div { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
 .review-slide p { font-size: 16px; line-height: 1.75; font-style: italic; margin: 0 0 24px; }
 .review-slide strong { font-size: 17px; color: var(--red); }
 .review-slide span { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.admission-reviews { background: #f4f1eb; border-top: 1px solid var(--line); }
+.camp-reviews { border-top: 1px solid var(--line); }
+.reviews .reviews-main-title { margin-bottom: 42px; }
+.reviews .reviews-subtitle { margin: 0 0 36px; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; letter-spacing: -.04em; }
+.admission-review-slide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); min-height: 560px; background: var(--white); }
+.admission-review-media { display: flex; align-items: center; justify-content: center; min-width: 0; height: 560px; background: #e9e6df; }
+.admission-review-media img, .admission-review-media video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.admission-review-media[href]:focus-visible { outline: 3px solid var(--red); outline-offset: -4px; }
+.admission-review-copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-width: 0; padding: clamp(28px, 4vw, 64px); }
+.admission-review-type { color: var(--red); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.admission-review-copy h3 { margin: 22px 0 18px; font-size: clamp(29px, 3vw, 45px); line-height: 1.18; letter-spacing: -.05em; }
+.admission-review-copy p { margin: 0; color: #59645d; font-size: 17px; line-height: 1.75; }
 .carousel-arrow { position: absolute; top: 45%; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--ink); font-size: 32px; line-height: 1; z-index: 1; }
 .carousel-arrow:hover { background: var(--red); color: white; }
 .carousel-prev { left: 0; }
@@ -73,6 +85,11 @@
   .review-slide { grid-template-columns: 1fr; }
   .review-slide > img { height: 300px; }
   .review-slide > div { padding: 26px; }
+  .admission-review-slide { grid-template-columns: 1fr; }
+  .admission-review-media { height: 390px; }
+  .admission-review-copy { padding: 28px; }
+  .admission-review-copy h3 { margin: 14px 0 12px; font-size: 30px; }
+  .admission-review-copy p { font-size: 15px; }
   .program-photos img { height: 220px; }
   .memory-slide { flex-basis: 100%; padding: 0; }
 }
@@ -80,6 +97,9 @@
   .content-carousel { padding: 0 32px; }
   .carousel-arrow { width: 28px; height: 36px; font-size: 25px; }
   .review-slide > img { height: 240px; }
+  .admission-review-media { height: 320px; }
+  .admission-review-copy { padding: 22px; }
+  .admission-review-copy h3 { font-size: 26px; }
   .memory-slide video { aspect-ratio: 3 / 4; }
   .program-photos img { height: 190px; }
 }
